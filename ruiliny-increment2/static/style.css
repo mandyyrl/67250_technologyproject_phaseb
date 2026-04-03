@@ -1,0 +1,20 @@
+* {
+    padding: 5px;
+    margin: 5px;
+    background: #FFF1D0;
+    color:  #086788;
+}
+
+* {
+    padding: 5px;
+    margin: 5px;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    line-height: 1.5;
+}
+
+#logo {
+    width: 18%;
+    display: block;
+}
