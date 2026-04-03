@@ -10,23 +10,30 @@
 </head>
 <body>
     <header>
-        <h1>MonoMuse</h1>
+        <h1>Checkout</h1>
     </header>
+
     <nav>
-        <a href="index.html">Home</a>
-        <a href="views/explore.html">Explore</a>
-        <a href="views/exhibitions.html">Exhibitions</a>
-        <a href="views/tickets.html">Buy Tickets</a>
-        <a href="views/checkout.html">Checkout</a>
+        <a href="../index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="exhibitions.html">Exhibitions</a>
+        <a href="tickets.html">Buy Tickets</a>
+        <a href="checkout.html">Checkout</a>
     </nav>
 
-
     <div class="main">
-        <h2>Welcome to MonoMuse</h2>
-        <p>
-            MonoMuse is a contemporary museum dedicated to exploring the intersection of art, technology, and human creativity. Through immersive exhibitions, interactive installations, and rotating collections, MonoMuse invites visitors to discover how digital innovation is transforming the way we create, experience, and understand art. Whether you are a first-time visitor or a returning member, our exhibitions offer new perspectives on the role of technology in culture and everyday life. Plan your visit to experience cutting-edge exhibitions, hands-on experiences, and events designed to inspire curiosity and creativity.
-        </p>
-        <a href="tickets.html">Buy Tickets</a>
+        <form>
+            <label for="name">Name: (required)</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email: (required)</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="quantity">Ticket Quantity: (required)</label>
+            <input type="number" id="quantity" name="quantity" required>
+
+            <button type="submit">Submit</button>
+        </form>
     </div>
 
     <footer>
