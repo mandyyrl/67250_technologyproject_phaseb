@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Your name">
+    <meta name="author" content="Mandy Yin">
     <meta name="keywords" content="Museum, Carnegie Mellon University, Information Systems">
     <meta name="description" content="MonoMuse website redesign project">
-    <title>MonoMuse</title>
+    <title>MonoMuse - Tickets</title>
 
     <link rel="stylesheet" href="../static/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="../static/script.js" defer></script>
+    <!-- jQuery 4.0.0 https://jquery.com/ -->
     <script
         src="https://code.jquery.com/jquery-4.0.0.min.js"
         integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
@@ -30,10 +31,42 @@
         <a href="explore.html">Explore</a>
         <a href="exhibitions.html">Exhibitions</a>
         <a href="tickets.html">Tickets</a>
+        <a href="membership.html">Membership</a>
         <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
     </nav>
 
     <div class="main">
+        <div class="content-card card-full">
+            <h2>Hours of Operation</h2>
+            <table>
+                <tr>
+                    <th>Day</th>
+                    <th>Hours</th>
+                    <th>Notes</th>
+                </tr>
+                <tr>
+                    <td>Monday</td>
+                    <td>Closed</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Tuesday - Friday</td>
+                    <td>10:00 am - 6:00 pm</td>
+                    <td>Last entry at 5:30 pm</td>
+                </tr>
+                <tr>
+                    <td>Saturday</td>
+                    <td>10:00 am - 8:00 pm</td>
+                    <td>Extended evening hours</td>
+                </tr>
+                <tr>
+                    <td>Sunday</td>
+                    <td>10:00 am - 5:00 pm</td>
+                    <td>Last entry at 4:30 pm</td>
+                </tr>
+            </table>
+        </div>
+
         <div class="content-card card-full">
             <h1>Buy Tickets</h1>
             <table>

@@ -1,3 +1,7 @@
+/* Libraries:
+    Google Fonts (Roboto) - https://fonts.google.com/
+ */
+
 * {
     padding: 5px;
     margin: 5px;
@@ -68,6 +72,14 @@ footer {
     text-align: center;
     color: #086788;
 }
+
+.attribution {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    margin-top: 0.25rem;
+}
+
+.attribution a { color: #07A0C3; }
 
 th {
     padding-top: 12px;
@@ -140,6 +152,34 @@ form * {
 }
 
 .card-img { padding: 0; overflow: hidden; }
+
+/* Slideshow */
+.slideshow-card { padding: 1.5rem 0; }
+#slideshow { position: relative; width: calc(100% - 4rem); margin: 0 auto; border-radius: 8px; overflow: hidden; padding: 0; }
+.slide { display: none; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; margin: 0; padding: 0; }
+.slide.active { display: block; }
+.slideshow-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0.75rem;
+    background: transparent;
+}
+.slide-btn {
+    background: rgba(8, 103, 136, 0.15);
+    border: 1px solid #086788;
+    color: #086788;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: background 0.2s;
+}
+.slide-btn:hover { background: #086788; color: #ffffff; }
+#slideCounter { font-size: 0.9rem; color: #086788; }
 
 .museum-photo {
     width: 100%;
@@ -254,6 +294,29 @@ table { margin: 0 auto; }
     margin: 0 !important;
     width: auto;
     flex-shrink: 0;
+}
+
+.membership-tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+}
+
+.membership-tiers .content-card {
+    padding: 1rem 1.25rem;
+    box-shadow: none;
+    border: 1px solid rgba(8, 103, 136, 0.2);
+}
+
+@media only screen and (max-width: 650px) {
+    .membership-tiers { grid-template-columns: 1fr; }
+}
+
+.membership-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #086788;
+    margin-bottom: 0.75rem;
 }
 
 .place-order-btn {

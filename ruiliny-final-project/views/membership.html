@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Mandy Yin">
+    <meta name="keywords" content="Museum, Carnegie Mellon University, Information Systems">
+    <meta name="description" content="MonoMuse website redesign project">
+    <title>MonoMuse - Membership</title>
+
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="../static/script.js" defer></script>
+    <!-- jQuery 4.0.0 -->
+    <script
+        src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+        crossorigin="anonymous"></script>
+</head>
+<body onload="addYear()">
+<div class="container">
+
+    <header class="header">
+        <img id="logo" src="../static/monomuselogo.png" alt="MonoMuse Museum Logo">
+    </header>
+
+    <nav class="nav_bar">
+        <a href="../index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="exhibitions.html">Exhibitions</a>
+        <a href="tickets.html">Tickets</a>
+        <a href="membership.html">Membership</a>
+        <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
+    </nav>
+
+    <div class="main">
+
+        <div class="content-card card-full">
+            <h1>Membership &amp; Donations</h1>
+            <p>Support MonoMuse and enjoy exclusive benefits. Members help us bring innovative exhibitions and educational programs to life.</p>
+        </div>
+
+        <div class="membership-tiers card-full">
+
+            <div class="content-card">
+                <h2>Individual</h2>
+                <p class="membership-price">$60 / year</p>
+                <ul>
+                    <li>Unlimited free admission</li>
+                    <li>10% discount at the museum shop</li>
+                    <li>Member newsletter</li>
+                    <li>Early access to new exhibitions</li>
+                </ul>
+                <a class="cta" href="#donateForm">Join Now</a>
+            </div>
+
+            <div class="content-card">
+                <h2>Family</h2>
+                <p class="membership-price">$120 / year</p>
+                <ul>
+                    <li>Unlimited free admission for 2 adults + children under 18</li>
+                    <li>15% discount at the museum shop</li>
+                    <li>Member newsletter</li>
+                    <li>Early access to new exhibitions</li>
+                    <li>4 guest passes per year</li>
+                </ul>
+                <a class="cta" href="#donateForm">Join Now</a>
+            </div>
+
+            <div class="content-card">
+                <h2>Patron</h2>
+                <p class="membership-price">$200 / year</p>
+                <ul>
+                    <li>All Family benefits</li>
+                    <li>Invitation to exclusive patron events</li>
+                    <li>Recognition in annual report</li>
+                    <li>Private curator-led tours (1 per year)</li>
+                    <li>Complimentary exhibition catalogue</li>
+                </ul>
+                <a class="cta" href="#donateForm">Join Now</a>
+            </div>
+
+        </div>
+
+        <div class="content-card card-full" id="donateForm">
+            <h2>Make a Donation</h2>
+            <p>Every contribution supports our exhibitions, community programs, and educational initiatives.</p>
+
+            <form id="membershipForm" novalidate>
+
+                <div class="form-group">
+                    <label for="mName">Full Name <span class="required">*</span></label>
+                    <input type="text" id="mName" name="mName" placeholder="First Last">
+                    <span class="error-msg" id="mNameError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="mEmail">Email Address <span class="required">*</span></label>
+                    <input type="email" id="mEmail" name="mEmail" placeholder="you@example.com">
+                    <span class="error-msg" id="mEmailError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="mType">Support Type <span class="required">*</span></label>
+                    <select id="mType" name="mType">
+                        <option value="">-- Select --</option>
+                        <option value="Individual Membership">Individual Membership — $60/yr</option>
+                        <option value="Family Membership">Family Membership — $120/yr</option>
+                        <option value="Patron Membership">Patron Membership — $200/yr</option>
+                        <option value="One-Time Donation">One-Time Donation</option>
+                    </select>
+                    <span class="error-msg" id="mTypeError"></span>
+                </div>
+
+                <div class="form-group" id="donationAmountGroup" style="display:none;">
+                    <label for="mAmount">Donation Amount ($) <span class="required">*</span></label>
+                    <input type="number" id="mAmount" name="mAmount" min="1" placeholder="Enter amount">
+                    <span class="error-msg" id="mAmountError"></span>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="mMailingList" name="mMailingList">
+                        Join our mailing list for updates and member news
+                    </label>
+                </div>
+
+                <button type="button" id="membershipSubmitBtn" class="place-order-btn">Submit</button>
+
+                <p id="membershipSuccess" style="color:#086788; display:none; margin-top:1rem; text-align:center;">
+                    Thank you for your support! We will be in touch shortly.
+                </p>
+
+            </form>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <p id="copyYear"></p>
+        <p id="weather"></p>
+    </footer>
+
+</div>
+
+<script>
+    // Show donation amount field only for one-time donation
+    $("#mType").on("change", function () {
+        if ($(this).val() === "One-Time Donation") {
+            $("#donationAmountGroup").show();
+        } else {
+            $("#donationAmountGroup").hide();
+            $("#mAmount").val("");
+        }
+    });
+
+    // Validate and submit
+    $("#membershipSubmitBtn").click(function () {
+        var valid = true;
+        $(".error-msg").text("");
+        $("#membershipSuccess").hide();
+
+        var name = $("#mName").val().trim();
+        if (!name) {
+            $("#mNameError").text("Full name is required.");
+            valid = false;
+        }
+
+        var email = $("#mEmail").val().trim();
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email) {
+            $("#mEmailError").text("Email address is required.");
+            valid = false;
+        } else if (!emailPattern.test(email)) {
+            $("#mEmailError").text("Please enter a valid email address.");
+            valid = false;
+        }
+
+        var type = $("#mType").val();
+        if (!type) {
+            $("#mTypeError").text("Please select a support type.");
+            valid = false;
+        }
+
+        if (type === "One-Time Donation") {
+            var amount = parseFloat($("#mAmount").val());
+            if (!amount || amount < 1) {
+                $("#mAmountError").text("Please enter a donation amount.");
+                valid = false;
+            }
+        }
+
+        if (valid) {
+            $("#membershipForm")[0].reset();
+            $("#donationAmountGroup").hide();
+            $("#membershipSuccess").show();
+        }
+    });
+</script>
+
+</body>
+</html>
