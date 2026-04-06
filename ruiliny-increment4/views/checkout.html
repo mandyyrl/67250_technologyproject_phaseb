@@ -9,38 +9,51 @@
     <title>MonoMuse</title>
 
     <link rel="stylesheet" href="../static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="../static/script.js" defer></script>
+    <script
+        src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+        crossorigin="anonymous"></script>
 </head>
 <body onload="addYear()">
-    <header>
-        <img id="logo" src="../static/monomuselogo.png" alt="MonoMuse Museum Logo">
+<div class="container">
 
-        <nav>
-            <a href="../index.html">Home</a>
-            <a href="explore.html">Explore</a>
-            <a href="exhibitions.html">Exhibitions</a>
-            <a href="tickets.html">Tickets</a>
-            <a id="navselected" href="checkout.html">Checkout</a>
-        </nav>
+    <header class="header">
+        <img id="logo" src="../static/monomuselogo.png" alt="MonoMuse Museum Logo">
     </header>
 
+    <nav class="nav_bar">
+        <a href="../index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="exhibitions.html">Exhibitions</a>
+        <a href="tickets.html">Tickets</a>
+    </nav>
+
     <div class="main">
-        <form>
-            <label for="name">Name: (required)</label><br>
-            <input type="text" id="name" name="name" required><br><br>
+        <div class="content-card card-full">
+            <h1>Checkout</h1>
+            <form>
+                <label for="name">Name: (required)</label><br>
+                <input type="text" id="name" name="name" required><br><br>
 
-            <label for="email">Email: (required)</label><br>
-            <input type="email" id="email" name="email" required><br><br>
+                <label for="email">Email: (required)</label><br>
+                <input type="email" id="email" name="email" required><br><br>
 
-            <label for="quantity">Ticket Quantity: (required)</label><br>
-            <input type="number" id="quantity" name="quantity" min="1" required><br><br>
+                <label for="quantity">Ticket Quantity: (required)</label><br>
+                <input type="number" id="quantity" name="quantity" min="1" required><br><br>
 
-            <button type="submit">Submit</button>
-        </form>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </div>
 
-    <footer>
+    <footer class="footer">
         <p id="copyYear"></p>
     </footer>
+
+</div>
 </body>
 </html>

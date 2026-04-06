@@ -9,38 +9,58 @@
     <title>MonoMuse</title>
 
     <link rel="stylesheet" href="../static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="../static/script.js" defer></script>
+    <script
+        src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+        crossorigin="anonymous"></script>
 </head>
 <body onload="addYear()">
-    <header>
-        <img id="logo" src="../static/monomuselogo.png" alt="MonoMuse Museum Logo">
+<div class="container">
 
-        <nav>
-            <a href="../index.html">Home</a>
-            <a id="navselected" href="explore.html">Explore</a>
-            <a href="exhibitions.html">Exhibitions</a>
-            <a href="tickets.html">Tickets</a>
-            <a href="checkout.html">Checkout</a>
-        </nav>
+    <header class="header">
+        <img id="logo" src="../static/monomuselogo.png" alt="MonoMuse Museum Logo">
     </header>
 
-    <img src="../static/MonomusePic.png" alt="Monomuse Picture" width="600">
+    <nav class="nav_bar">
+        <a href="../index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="exhibitions.html">Exhibitions</a>
+        <a href="tickets.html">Tickets</a>
+    </nav>
 
     <div class="main">
-        <h2>Mission Statement</h2>
-        <p>
-            MonoMuse is dedicated to exploring the evolving relationship between art, technology, and society. Our mission is to inspire curiosity and creativity by showcasing innovative exhibitions that highlight how digital tools, emerging technologies, and human imagination shape the future of artistic expression.
-        </p>
-        <h2>Milestones</h2>
-        <p>
-            <ul>2023: Expansion of the museum space and launch of international artist collaborations.</ul>
-            <ul>2018: Launch of the Interactive Media Lab, allowing visitors to experiment with creative coding.</ul>
-            <ul>2016: MonoMuse opens its doors with its first exhibition on digital storytelling.</ul>
-        </p>
+        <div class="content-card card-full card-img">
+            <img src="../static/MonomusePic.png" alt="MonoMuse Museum exterior view" class="museum-photo">
+        </div>
+
+        <div class="content-card">
+            <h2>Mission Statement</h2>
+            <p>
+                MonoMuse is dedicated to exploring the evolving relationship between art, technology, and
+                society. Our mission is to inspire curiosity and creativity by showcasing innovative
+                exhibitions that highlight how digital tools, emerging technologies, and human imagination
+                shape the future of artistic expression.
+            </p>
+        </div>
+
+        <div class="content-card">
+            <h2>Milestones</h2>
+            <ul>
+                <li>2023: Expansion of the museum space and launch of international artist collaborations.</li>
+                <li>2018: Launch of the Interactive Media Lab, allowing visitors to experiment with creative coding.</li>
+                <li>2016: MonoMuse opens its doors with its first exhibition on digital storytelling.</li>
+            </ul>
+        </div>
     </div>
 
-    <footer>
+    <footer class="footer">
         <p id="copyYear"></p>
     </footer>
+
+</div>
 </body>
 </html>

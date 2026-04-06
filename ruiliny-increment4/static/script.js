@@ -81,3 +81,33 @@ function addYear(x) {
 
     message.innerHTML = "&copy; " + curr_year + " MonoMuse. All rights reserved."
 }
+
+function ActiveNav() {
+    const navLinks = document.querySelectorAll('.nav_bar a');
+    navLinks.forEach(link => {
+        if (link.href === window.location.href) {
+            link.classList.add('active');
+        }
+    });
+}
+ActiveNav();
+
+$(document).ready(function() {
+    $("#readMore").click(function() {
+        $("#longIntro").show();
+        $("#readLess").show();
+        $("#readMore").hide();
+    });
+
+    $("#readLess").click(function() {
+        $("#longIntro").hide();
+        $("#readLess").hide();
+        $("#readMore").show();
+    });
+});
+
+function showForm(date) {
+    document.getElementById("pDate").value = date;
+    document.getElementById("purchaseForm").style.display = "block";
+    document.getElementById("purchaseForm").scrollIntoView({ behavior: "smooth" });
+}
