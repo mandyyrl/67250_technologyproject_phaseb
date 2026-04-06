@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="../static/script.js" defer></script>
+    <!-- jQuery 4.0.0 -->
     <script
         src="https://code.jquery.com/jquery-4.0.0.min.js"
         integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
@@ -36,17 +37,84 @@
     <div class="main">
         <div class="content-card card-full">
             <h1>Checkout</h1>
-            <form>
-                <label for="name">Name: (required)</label><br>
-                <input type="text" id="name" name="name" required><br><br>
 
-                <label for="email">Email: (required)</label><br>
-                <input type="email" id="email" name="email" required><br><br>
+            <form id="checkoutForm" novalidate>
 
-                <label for="quantity">Ticket Quantity: (required)</label><br>
-                <input type="number" id="quantity" name="quantity" min="1" required><br><br>
+                <!-- Visit Date -->
+                <div class="form-group">
+                    <label for="visitDate">Visit Date <span class="required">*</span></label>
+                    <input type="date" id="visitDate" name="visitDate">
+                    <span class="error-msg" id="visitDateError"></span>
+                </div>
 
-                <button type="submit">Submit</button>
+                <!-- Ticket Quantity Table -->
+                <div class="form-group">
+                    <label>Tickets <span class="required">*</span> — select at least one</label>
+                    <table id="ticketTable">
+                        <tr>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                        </tr>
+                        <tr>
+                            <td>General</td>
+                            <td>Ages 18+. Under 18 free.</td>
+                            <td>$18</td>
+                            <td><input type="number" class="ticket-qty" id="qtyGeneral" min="0" max="10" value="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Student</td>
+                            <td>Student ID required</td>
+                            <td>$10</td>
+                            <td><input type="number" class="ticket-qty" id="qtyStudent" min="0" max="10" value="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Member</td>
+                            <td>Member ID required</td>
+                            <td>$15</td>
+                            <td><input type="number" class="ticket-qty" id="qtyMember" min="0" max="10" value="0"></td>
+                        </tr>
+                    </table>
+                    <span class="error-msg" id="ticketError"></span>
+                </div>
+
+                <!-- Price Display -->
+                <div class="form-group price-display">
+                    <p>Order Total: <strong id="priceDisplay">$0.00</strong></p>
+                </div>
+
+                <!-- Name -->
+                <div class="form-group">
+                    <label for="name">Full Name <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" placeholder="FirstName LastName">
+                    <span class="error-msg" id="nameError"></span>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com">
+                    <span class="error-msg" id="emailError"></span>
+                </div>
+
+                <!-- Zip Code -->
+                <div class="form-group">
+                    <label for="zip">Zip Code <span class="optional">(optional)</span></label>
+                    <input type="text" id="zip" name="zip" maxlength="5" placeholder="12345">
+                    <span class="error-msg" id="zipError"></span>
+                </div>
+
+                <!-- Mailing List -->
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="mailingList" name="mailingList">
+                        Join our mailing list to receive updates and special offers
+                    </label>
+                </div>
+
+                <button type="button" id="placeOrderBtn" class="place-order-btn">Place Order</button>
+
             </form>
         </div>
     </div>
@@ -57,5 +125,91 @@
     </footer>
 
 </div>
+
+<script>
+    // Pre-fill date if coming from tickets page
+    var prefilledDate = sessionStorage.getItem("checkoutDate");
+    if (prefilledDate) {
+        document.getElementById("visitDate").value = prefilledDate;
+        sessionStorage.removeItem("checkoutDate");
+    }
+
+    // Autocalculate total when any quantity changes
+    $(".ticket-qty").on("input change", function () {
+        var general = parseInt($("#qtyGeneral").val()) || 0;
+        var student = parseInt($("#qtyStudent").val()) || 0;
+        var member  = parseInt($("#qtyMember").val())  || 0;
+        var total = (general * 18) + (student * 10) + (member * 15);
+        $("#priceDisplay").text("$" + total.toFixed(2));
+    });
+
+    // Place Order
+    $("#placeOrderBtn").click(function () {
+        var valid = true;
+        $(".error-msg").text("");
+
+        // Visit Date
+        var visitDate = $("#visitDate").val();
+        if (!visitDate) {
+            $("#visitDateError").text("Please select a visit date.");
+            valid = false;
+        }
+
+        // Tickets — at least one must be > 0
+        var general = parseInt($("#qtyGeneral").val()) || 0;
+        var student = parseInt($("#qtyStudent").val()) || 0;
+        var member  = parseInt($("#qtyMember").val())  || 0;
+        if (general + student + member === 0) {
+            $("#ticketError").text("Please select at least one ticket.");
+            valid = false;
+        }
+
+        // Name
+        var name = $("#name").val().trim();
+        if (!name) {
+            $("#nameError").text("Full name is required.");
+            valid = false;
+        }
+
+        // Email
+        var email = $("#email").val().trim();
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email) {
+            $("#emailError").text("Email address is required.");
+            valid = false;
+        } else if (!emailPattern.test(email)) {
+            $("#emailError").text("Please enter a valid email address.");
+            valid = false;
+        }
+
+        // Zip Code (optional)
+        var zip = $("#zip").val().trim();
+        if (zip && !/^\d{5}$/.test(zip)) {
+            $("#zipError").text("Zip code must be exactly 5 digits.");
+            valid = false;
+        }
+
+        if (valid) {
+            var total = (general * 18) + (student * 10) + (member * 15);
+            var ticketSummary = [];
+            if (general > 0) ticketSummary.push("General * " + general);
+            if (student > 0) ticketSummary.push("Student * " + student);
+            if (member  > 0) ticketSummary.push("Member * "  + member);
+
+            sessionStorage.setItem("order", JSON.stringify({
+                visitDate:   visitDate,
+                tickets:     ticketSummary,
+                quantity:    general + student + member,
+                name:        name,
+                email:       email,
+                zip:         zip || "N/A",
+                mailingList: $("#mailingList").is(":checked"),
+                total:       total.toFixed(2)
+            }));
+            window.location.href = "confirmation.html";
+        }
+    });
+</script>
+
 </body>
 </html>

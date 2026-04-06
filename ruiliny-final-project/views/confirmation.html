@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Your name">
+    <meta name="keywords" content="Museum, Carnegie Mellon University, Information Systems">
+    <meta name="description" content="MonoMuse website redesign project">
+    <title>MonoMuse</title>
+
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="../static/script.js" defer></script>
+    <!-- jQuery 4.0.0 -->
+    <script
+        src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+        crossorigin="anonymous"></script>
+</head>
+<body onload="addYear()">
+<div class="container">
+
+    <header class="header">
+        <img id="logo" src="../static/monomuselogo.png" alt="MonoMuse Museum Logo">
+    </header>
+
+    <nav class="nav_bar">
+        <a href="../index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="exhibitions.html">Exhibitions</a>
+        <a href="tickets.html">Tickets</a>
+        <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
+    </nav>
+
+    <div class="main">
+        <div class="content-card card-full" id="confirmationCard">
+            <h1>Order Confirmed!</h1>
+            <p id="confirmMessage">Thank you for your purchase. Your tickets have been reserved.</p>
+
+            <table id="orderSummary">
+                <tr>
+                    <th>Detail</th>
+                    <th>Information</th>
+                </tr>
+                <tr>
+                    <td>Visit Date</td>
+                    <td id="confDate"></td>
+                </tr>
+                <tr>
+                    <td>Tickets</td>
+                    <td id="confTickets"></td>
+                </tr>
+                <tr>
+                    <td>Total Tickets</td>
+                    <td id="confQty"></td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td id="confName"></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td id="confEmail"></td>
+                </tr>
+                <tr>
+                    <td>Mailing List</td>
+                    <td id="confMailing"></td>
+                </tr>
+                <tr class="total-row">
+                    <td><strong>Total Charged</strong></td>
+                    <td><strong id="confTotal"></strong></td>
+                </tr>
+            </table>
+
+            <p style="margin-top:1.5rem;">A confirmation email will be sent to <strong id="confEmailRepeat"></strong>.</p>
+            <p>This is a simulated checkout. No payment has been processed.</p>
+
+            <a class="cta" href="../index.html">Back to Home</a>
+        </div>
+
+        <!-- Shown if no order data found -->
+        <div class="content-card card-full" id="noOrderCard" style="display:none;">
+            <h1>No Order Found</h1>
+            <p>It looks like you navigated here directly. Please complete the checkout process first.</p>
+            <a class="cta" href="tickets.html">Buy Tickets</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p id="copyYear"></p>
+        <p id="weather"></p>
+    </footer>
+
+</div>
+
+<script>
+    var orderData = sessionStorage.getItem("order");
+
+    if (orderData) {
+        var order = JSON.parse(orderData);
+
+        $("#confDate").text(order.visitDate);
+        $("#confTickets").html(order.tickets.join("<br>"));
+        $("#confQty").text(order.quantity);
+        $("#confName").text(order.name);
+        $("#confEmail").text(order.email);
+        $("#confEmailRepeat").text(order.email);
+        $("#confMailing").text(order.mailingList ? "Yes" : "No");
+        $("#confTotal").text("$" + order.total);
+
+        sessionStorage.removeItem("order");
+    } else {
+        $("#confirmationCard").hide();
+        $("#noOrderCard").show();
+    }
+</script>
+
+</body>
+</html>

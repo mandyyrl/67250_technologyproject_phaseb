@@ -51,9 +51,11 @@ $(document).ready(function() {
 });
 
 function showForm(date) {
-    document.getElementById("pDate").value = date;
-    document.getElementById("purchaseForm").style.display = "block";
-    document.getElementById("purchaseForm").scrollIntoView({ behavior: "smooth" });
+    // Convert "April 5, 2026" to YYYY-MM-DD for the date input
+    var d = new Date(date);
+    var formatted = d.toISOString().split("T")[0];
+    sessionStorage.setItem("checkoutDate", formatted);
+    window.location.href = "checkout.html";
 }
 
 function toggleMenu() {
