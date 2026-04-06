@@ -1,59 +1,3 @@
-// var x = 5
-// var y = 7
-// var z = x + y
-// console.log(z)
-
-// A = "Hello "
-// B = "world!"
-// var C = A + B
-// console.log(C)
-
-// // function name(params) {
-
-// // }
-
-// function sumnPrint(x1, x2) {
-//     x = x1 + x2
-//     console.log(x)
-// }
-
-// sumnPrint(x, y)
-// sumnPrint(A, B)
-
-// if (C.length > z) {
-//     console.log(C)
-// } else if (C.length < z) {
-//     console.log(z)
-// } else {
-//     console.log("good job!")
-// }
-
-// L1 = ["Watermelon","Pineapple","Pear","Banana"];
-// L2 = ["Apple","Banana","Kiwi","Orange"];
-
-// function findTheBanana(arr) {
-//     for (element of arr) {
-//         if (element === "Banana") {
-//             alert(`Found Banana in ${arr}`)
-//         }
-//     }
-// }
-
-// findTheBanana(L1)
-// findTheBanana(L2)
-
-// L1.forEach((element) => {
-//     if (element === "Banana") {
-//         alert("We found a banana in the first array");
-//     }
-// });
-
-// L2.forEach((element) => {
-//     if (element === "Banana") {
-//         alert("We found a banana in the second array");
-//     }
-// });
-
 var now = new Date();
 var hour = now.getHours();
 
@@ -110,4 +54,49 @@ function showForm(date) {
     document.getElementById("pDate").value = date;
     document.getElementById("purchaseForm").style.display = "block";
     document.getElementById("purchaseForm").scrollIntoView({ behavior: "smooth" });
+}
+
+function toggleMenu() {
+    var nav = document.querySelector(".nav_bar");
+    nav.classList.toggle("responsive");
+}
+
+function fetchWeather() {
+    var weatherEl = document.getElementById("weather");
+    if (!weatherEl) return;
+
+    var weatherCodes = {
+        0: "Clear sky", 1: "Mainly clear", 2: "Partly cloudy", 3: "Overcast",
+        45: "Foggy", 48: "Icy fog",
+        51: "Light drizzle", 53: "Drizzle", 55: "Heavy drizzle",
+        61: "Light rain", 63: "Rain", 65: "Heavy rain",
+        71: "Light snow", 73: "Snow", 75: "Heavy snow",
+        80: "Rain showers", 81: "Rain showers", 82: "Heavy rain showers",
+        95: "Thunderstorm"
+    };
+
+    fetch("https://api.open-meteo.com/v1/forecast?latitude=40.4433&longitude=-79.9436&current=temperature_2m,weather_code&temperature_unit=fahrenheit")
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
+            var temp = data.current.temperature_2m;
+            var code = data.current.weather_code;
+            var condition = weatherCodes[code] || "Unknown";
+            weatherEl.innerHTML = "Current weather at MonoMuse: " + condition + ", " + temp + "&deg;F";
+        })
+        .catch(function() {
+            weatherEl.innerHTML = "Weather data unavailable.";
+        });
+}
+
+fetchWeather();
+
+if (document.getElementById("map")) {
+    var map = L.map("map").setView([40.4433, -79.9436], 15);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
+    }).addTo(map);
+    L.marker([40.4433, -79.9436]).addTo(map)
+        .bindPopup("MonoMuse Museum")
+        .openPopup();
 }

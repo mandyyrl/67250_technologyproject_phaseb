@@ -177,6 +177,22 @@ table { margin: 0 auto; }
 
 #purchaseForm form { margin: 0 auto; }
 
+#purchaseForm button {
+    background-color: #086788;
+    color: #ffffff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s, transform 0.15s;
+}
+
+#purchaseForm button:hover {
+    background-color: #07A0C3;
+    transform: scale(1.05);
+}
+
 .card-full h2 { text-align: center; }
 
 .buy-btn {
@@ -189,3 +205,33 @@ table { margin: 0 auto; }
 }
 
 .buy-btn:hover { background-color: #07A0C3; }
+
+/* Part 5: Leaflet Map */
+#map { height: 400px; width: 100%; border-radius: 12px; }
+
+.leaflet-bar a,
+.leaflet-control-attribution,
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+    background: rgba(255, 241, 208, 0.5) !important;
+}
+
+/* Parts 2 & 3: Responsive Web Design + Hamburger Nav */
+@media only screen and (max-width: 650px) {
+    .main {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .card-full { grid-column: 1; }
+
+    #logo { width: 40%; }
+
+    iframe { width: 100%; }
+
+    .nav_bar a:not(.icon) { display: none; }
+    .nav_bar .icon { display: block; margin-left: auto; }
+    .nav_bar.responsive { flex-direction: column; align-items: flex-start; }
+    .nav_bar.responsive a { display: block; width: 100%; }
+}
