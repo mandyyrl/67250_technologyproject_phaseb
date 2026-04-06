@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Your name">
+    <meta name="keywords" content="Museum, Carnegie Mellon University, Information Systems">
+    <meta name="description" content="MonoMuse website redesign project">
+    <title>MonoMuse</title>
+
+    <link rel="stylesheet" href="./static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="./static/script.js" defer></script>
+    <script
+        src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+        crossorigin="anonymous"></script>
+</head>
+<body onload="addYear()">
+<div class="container">
+
+    <header class="header">
+        <img id="logo" src="./static/monomuselogo.png" alt="MonoMuse Museum Logo">
+    </header>
+
+    <nav class="nav_bar">
+        <a href="index.html">Home</a>
+        <a href="views/explore.html">Explore</a>
+        <a href="views/exhibitions.html">Exhibitions</a>
+        <a href="views/tickets.html">Tickets</a>
+        <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
+    </nav>
+
+    <div class="main">
+        <div class="content-card card-full">
+            <h1 id="greeting">Welcome to MonoMuse</h1>
+            <p id="shortIntro">
+                MonoMuse is a contemporary museum dedicated to exploring the intersection of art, technology,
+                and human creativity.
+            </p>
+            <p id="longIntro">
+                Through immersive exhibitions, interactive installations, and rotating collections, MonoMuse
+                invites visitors to discover how digital innovation is transforming the way we create,
+                experience, and understand art. Whether you are a first-time visitor or a returning member,
+                our exhibitions offer new perspectives on the role of technology in culture and everyday life.
+                Plan your visit to experience cutting-edge exhibitions, hands-on experiences, and events
+                designed to inspire curiosity and creativity.
+            </p>
+            <button id="readMore" class="toggle-btn">Read More</button>
+            <button id="readLess" class="toggle-btn">Read Less</button>
+            <a class="cta" href="views/tickets.html">Buy Tickets</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p id="copyYear"></p>
+        <p id="weather"></p>
+    </footer>
+
+</div>
+</body>
+</html>

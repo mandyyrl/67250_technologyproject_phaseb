@@ -1,0 +1,237 @@
+* {
+    padding: 5px;
+    margin: 5px;
+    background: #FFF1D0;
+    color:  #086788;
+}
+
+* {
+    padding: 5px;
+    margin: 5px;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    line-height: 1.5;
+}
+
+#logo {
+    width: 18%;
+    display: block;
+    margin: 0 auto;
+}
+
+nav a {
+    text-decoration: none;
+    color: #07A0C3;
+    font-weight: 400;
+    padding: 8px 10px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+}
+
+nav a:hover {
+    border-color: #086788;
+}
+
+.active {
+    color:#086788;
+    font-weight: 600;
+}
+
+.cta {
+    text-decoration: none;
+    color: #FFFFFF;
+    background-color: #F0C808;
+    font-weight: 400;
+    padding: 8px 10px;
+    border: 1px solid;
+    border-color: #F0C808;
+    border-radius: 12px;
+    display: inline-block;
+    margin-top: 1.5rem;
+}
+
+.cta:hover {
+    text-decoration: none;
+    color: #FFFFFF;
+    background-color: #F0C808;
+    font-weight: 1000;
+    padding: 8px 10px;
+    border: 2px solid;
+    border-color: #F0C808;
+    border-radius: 12px;
+}
+
+footer {
+    border-top: 1px solid #086788;
+    padding: 18px 16px;
+    text-align: center;
+    color: #086788;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    width: fit-content;
+}
+  
+tr:nth-child(even) td {
+    background-color: #07a1c334;
+}
+
+form * {
+    margin: auto;
+    text-align: center;
+}
+
+/* CSS Grid Layout */
+
+.container {
+    display: grid;
+    grid-template-areas:
+        "header"
+        "nav"
+        "main"
+        "footer";
+    grid-template-rows: auto auto 1fr auto;
+    min-height: 100vh;
+}
+
+.header { grid-area: header; padding: 0.25rem 2rem; text-align: center; }
+
+.nav_bar {
+    grid-area: nav;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 2rem;
+    border-bottom: 2px solid #086788;
+    justify-content: center;
+}
+
+.main {
+    grid-area: main;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 380px));
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 2rem;
+    align-content: start;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.footer { grid-area: footer; }
+
+
+.content-card {
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 2px 8px rgba(8, 103, 136, 0.12);
+}
+
+.card-full {
+    grid-column: 1 / -1;
+}
+
+.card-img { padding: 0; overflow: hidden; }
+
+.museum-photo {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+    height: auto;
+}
+
+.nav_bar .icon { display: none; }
+
+.card-full h1, .card-full h3 { text-align: center; }
+iframe { display: block; margin: 0 auto; }
+
+table { margin: 0 auto; }
+
+.content-card form { max-width: 480px; margin: 0 auto; }
+
+.card-full .cta { display: block; width: fit-content; margin: 1.5rem auto 0; }
+
+
+#longIntro { display: none; }
+#readLess { display: none; }
+.toggle-btn {
+    background: none;
+    border: 1px solid #07A0C3;
+    color: #07A0C3;
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+}
+.toggle-btn:hover { background-color: #07A0C3; color: #ffffff; }
+
+
+#purchaseForm { display: none; margin-top: 1.5rem; text-align: center; }
+
+#purchaseForm form { margin: 0 auto; }
+
+#purchaseForm button {
+    background-color: #086788;
+    color: #ffffff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s, transform 0.15s;
+}
+
+#purchaseForm button:hover {
+    background-color: #07A0C3;
+    transform: scale(1.05);
+}
+
+.card-full h2 { text-align: center; }
+
+.buy-btn {
+    background-color: #086788;
+    color: #ffffff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.buy-btn:hover { background-color: #07A0C3; }
+
+/* Part 5: Leaflet Map */
+#map { height: 400px; width: 100%; border-radius: 12px; }
+
+.leaflet-bar a,
+.leaflet-control-attribution,
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+    background: rgba(255, 241, 208, 0.5) !important;
+}
+
+/* Parts 2 & 3: Responsive Web Design + Hamburger Nav */
+@media only screen and (max-width: 650px) {
+    .main {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .card-full { grid-column: 1; }
+
+    #logo { width: 40%; }
+
+    iframe { width: 100%; }
+
+    .nav_bar a:not(.icon) { display: none; }
+    .nav_bar .icon { display: block; margin-left: auto; }
+    .nav_bar.responsive { flex-direction: column; align-items: flex-start; }
+    .nav_bar.responsive a { display: block; width: 100%; }
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Your name">
+    <meta name="keywords" content="Museum, Carnegie Mellon University, Information Systems">
+    <meta name="description" content="MonoMuse website redesign project">
+    <title>MonoMuse</title>
+
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="../static/script.js" defer></script>
+    <script
+        src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+        crossorigin="anonymous"></script>
+</head>
+<body onload="addYear()">
+<div class="container">
+
+    <header class="header">
+        <img id="logo" src="../static/monomuselogo.png" alt="MonoMuse Museum Logo">
+    </header>
+
+    <nav class="nav_bar">
+        <a href="../index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="exhibitions.html">Exhibitions</a>
+        <a href="tickets.html">Tickets</a>
+        <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
+    </nav>
+
+    <div class="main">
+        <div class="content-card card-full">
+            <h1>Buy Tickets</h1>
+            <table>
+                <tr>
+                    <th>Ticket Type</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>Adult</td>
+                    <td>General admission for ages 18 and over. Under 18 free of charge.</td>
+                    <td>$18</td>
+                </tr>
+                <tr>
+                    <td>Student</td>
+                    <td>Student ID required</td>
+                    <td>$10</td>
+                </tr>
+                <tr>
+                    <td>Member</td>
+                    <td>Member ID required</td>
+                    <td>$15</td>
+                </tr>
+            </table>
+            <h2 style="margin-top:1.5rem;">April 2026 Schedule</h2>
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Day</th>
+                    <th>Hours</th>
+                    <th>Availability</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>April 5, 2026</td><td>Sunday</td><td>10am - 5pm</td><td>Available</td>
+                    <td><button class="buy-btn" onclick="showForm('April 5, 2026')">Buy Now</button></td>
+                </tr>
+                <tr>
+                    <td>April 12, 2026</td><td>Sunday</td><td>10am - 5pm</td><td>Available</td>
+                    <td><button class="buy-btn" onclick="showForm('April 12, 2026')">Buy Now</button></td>
+                </tr>
+                <tr>
+                    <td>April 19, 2026</td><td>Sunday</td><td>10am - 5pm</td><td>Available</td>
+                    <td><button class="buy-btn" onclick="showForm('April 19, 2026')">Buy Now</button></td>
+                </tr>
+                <tr>
+                    <td>April 26, 2026</td><td>Sunday</td><td>10am - 5pm</td><td>Selling Fast</td>
+                    <td><button class="buy-btn" onclick="showForm('April 26, 2026')">Buy Now</button></td>
+                </tr>
+            </table>
+
+            <div id="purchaseForm">
+                <h2>Purchase Tickets</h2>
+                <form>
+                    <label for="pName">Name:</label><br>
+                    <input type="text" id="pName" name="name" required><br><br>
+
+                    <label for="pEmail">Email:</label><br>
+                    <input type="email" id="pEmail" name="email" required><br><br>
+
+                    <label for="pTickets">Number of Tickets:</label><br>
+                    <input type="number" id="pTickets" name="tickets" min="1" required><br><br>
+
+                    <label for="pDate">Selected Date:</label><br>
+                    <input type="text" id="pDate" name="date" readonly><br><br>
+
+                    <button type="button" onclick="alert('Redirecting to payment system.')">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p id="copyYear"></p>
+        <p id="weather"></p>
+    </footer>
+
+</div>
+</body>
+</html>
